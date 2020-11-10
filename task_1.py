@@ -1,12 +1,13 @@
 from pathlib import Path as pth
 from matplotlib import pyplot as plt
 import numpy as np
+from scipy.interpolate import interp1d
 
 A = 9.66459
 x = np.linspace(-10, 10, 10)
 
 def f(x):
-    return -abs(np.sin(x) * np.cos(A) * np.exp(abs(1 - (np.sqrt(x ** 2 + A ** 2) / np.pi))))
+    return -abs(np.sin(x) * np.cos(A) * np.exp( abs( 1 - (np.sqrt(x ** 2 + A ** 2) / np.pi) ) ) )
 y = f(x)
 print(y)
 p = pth('results')
@@ -22,9 +23,10 @@ if p.exists():
             i += 1
 else:
     print("Error: \'results\' dir does not exists")
-
-plt.plot(x, y)
+ynew = interp1d(x, y, kind = 'cubic')
+xnew = np.linspace(-10, 10, 260)
+plt.plot(xnew, ynew(xnew), '-')
 plt.grid()
 plt.xlabel("x")
-plt.ylabel("f(x)")
+plt.ylabel("y")
 plt.show()
