@@ -190,8 +190,8 @@ ax2.legend(['Спектр падающего сигнала',
 ax2.minorticks_on()
 ax2.grid()
 # Коэффициент отражения
-ax3.set_xlim(Fmin, Fmax*15)
-ax3.set_ylim(0, 56.0)
+ax3.set_xlim(Fmin, Fmax)
+ax3.set_ylim(0, 1.0)
 ax3.set_xlabel('f, Гц')
 ax3.set_ylabel('|Г|, б/р')
 ax3.plot(flist, Gamma)
